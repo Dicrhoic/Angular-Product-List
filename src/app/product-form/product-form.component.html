@@ -2,7 +2,7 @@
     <div [hidden]="submitted">
         {{ model | json }}
         <form (ngSubmit)="onSubmit()" #productForm="ngForm">
-            <h1>Product Form</h1>
+            <h1>Add Product Form</h1>
             <div class="form-group">
                 <label for="name">Product name: </label>
                 <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"
