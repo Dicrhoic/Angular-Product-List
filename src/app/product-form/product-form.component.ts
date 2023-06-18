@@ -17,6 +17,8 @@ export class ProductFormComponent {
 
   products: Product[] = [];
 
+
+
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
@@ -64,10 +66,12 @@ export class ProductFormComponent {
           this.products.push(product)
         });
     }
-    this.productService.addProduct({name, price, currency, vendor, link, description} as Product)
-    .subscribe(product => {
-        this.products.push(product)
-      });
+    else{
+      this.productService.addProduct({name, price, currency, vendor, link, description} as Product)
+      .subscribe(product => {
+          this.products.push(product)
+        });
+    }
   }
 
   currency = ['AUD', 'USD', 'GBP', 'JPY'];

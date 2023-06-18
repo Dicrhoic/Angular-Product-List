@@ -16,8 +16,6 @@ export class ProductDetailComponent {
 
   currency = ['AUD', 'USD', 'GBP', 'YEN'];
   
-  
-
   adjustPrice(cost: string): string {
     if(this.product)
     {

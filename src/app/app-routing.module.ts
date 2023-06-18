@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { PageNotFoundComponent } from './error/page-not-found/page-not-found.component';
+import { AddFormComponent } from './form/add-form/add-form.component';
 
 const routes: Routes = [
 
@@ -12,7 +14,9 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'dashboard', component: DashboardComponent },
   { path: 'AddProduct', component: ProductFormComponent },
+  { path: 'AddSingleProduct', component: AddFormComponent },
   { path: 'detail/:id', component: ProductDetailComponent },
+  { path: '**', component: PageNotFoundComponent},
 
 ];
 

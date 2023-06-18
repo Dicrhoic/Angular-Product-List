@@ -1,0 +1,84 @@
+<div class="container">
+    <div [hidden]="submitted">
+        <form (ngSubmit)="onSubmit()" #dataForm="ngForm">
+            <h1>Add Singular Item</h1>
+            <div class="form-group">
+                <label for="name">Product name: </label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name"
+                    #name="ngModel" placeholder="Enter Product Name">
+                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    Name is required
+                </div>
+                <label for="vendor">Vendor name: </label>
+                <input type="text" class="form-control" id="vendor" required [(ngModel)]="model.vendor" name="vendor"
+                    #vendor="ngModel" placeholder="Enter Vendor Name">
+                <div [hidden]="vendor.valid || vendor.pristine" class="alert alert-danger">
+                    Vendor is required
+                </div>
+                <label for="link">Product Link: </label>
+                <input type="text" class="form-control" id="link" required [(ngModel)]="model.link" name="link"
+                    #link="ngModel" placeholder="Enter Product Link">
+                <div [hidden]="link.valid || link.pristine" class="alert alert-danger">
+                    A link is required
+                </div>
+                <label for="link">Product Image Link: </label>
+                <input type="text" class="form-control" id="link" required [(ngModel)]="model.image" name="link"
+                    #image="ngModel" placeholder="Enter Product Image Link" (change)="updateImageHolder(image.value)">
+                <div [hidden]="image.valid || image.pristine" class="alert alert-danger">
+                    An image link is required
+                </div>
+                <div *ngIf="imageUri != ''">
+                    <img  src="{{imageUri}}" />
+                </div>
+                <div class="form-group">
+                    <label for="currency">Currency: </label>
+                    <select class="form-control" id="currency" required>
+                        <option *ngFor="let curr of currency" [value]="curr">{{curr}}</option>
+                    </select>
+                    <input type="text" class="form-control" id="price" required [(ngModel)]="model.price" name="price"
+                        (change)="adjustPrice(price.value)" type="number" #price="ngModel">
+                    <div [hidden]="price.valid || price.pristine" class="alert alert-danger">
+                        A price is required
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="description">Product Description</label>
+                    <input type="text" class="form-control" id="description" [(ngModel)]="model.description"
+                        name="description" #description="ngModel">
+                </div>
+                <button type="submit" class="btn btn-success" [disabled]="!dataForm.form.valid">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div [hidden]="!submitted">
+        <h2>You are about to add the following product:</h2>
+        <div class="row">
+            <div class="col-xs-3">Name</div>
+            <div class="col-xs-9">{{ model.name }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Vendor</div>
+            <div class="col-xs-9">{{ model.vendor }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Link</div>
+            <div class="col-xs-9">{{ model.link }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Price</div>
+            <div class="col-xs-9">{{ model.price | currency: model.currency:'symbol' }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Description</div>
+            <div class="col-xs-9">{{ model.description === 'null' ? 'No Description set' : model.description}}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Image</div>
+            <img src="{{model.image}}" />
+        </div>
+        <br>
+        <button type="button" class="btn btn-primary"
+          >Save as PDF</button>
+        <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
+    </div>
+</div>

@@ -15,6 +15,9 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { MessagesComponent } from './messages/messages.component';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { PcPartsComponent } from './pc-parts/pc-parts.component';
+import { AddFormComponent } from './form/add-form/add-form.component';
+import { PageNotFoundComponent } from './error/page-not-found/page-not-found.component';
+import { NgOptimizedImage } from '@angular/common'
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { PcPartsComponent } from './pc-parts/pc-parts.component';
     ProductDetailComponent,
     MessagesComponent,
     ProductSearchComponent,
-    PcPartsComponent
+    PcPartsComponent,
+    AddFormComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +40,8 @@ import { PcPartsComponent } from './pc-parts/pc-parts.component';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
-    )
+    ),
+    NgOptimizedImage
   ],
   providers: [],
   bootstrap: [AppComponent]
