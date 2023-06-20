@@ -1,8 +1,11 @@
-import { Component, OnInit, SecurityContext} from '@angular/core';
+import { Component, OnInit, SecurityContext, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ImageProduct } from 'src/classes/imageProduct';
 import { DomSanitizer } from '@angular/platform-browser';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable'
+import html2canvas from 'html2canvas';
 
 
 @Component({
@@ -10,8 +13,9 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './add-form.component.html',
   styleUrls: ['./add-form.component.css']
 })
-export class AddFormComponent {
-  
+export class AddFormComponent implements AfterViewInit {
+  @ViewChild('prodRes', {static: false}) htmlData!: ElementRef<HTMLDivElement>;
+  @ViewChild('prodImg', {static: false}) htmlImg!: ElementRef<HTMLImageElement>;
   selectedFiles?: FileList;
   currentFile?: File;
   progress = 0;
@@ -27,6 +31,12 @@ export class AddFormComponent {
   currency = ['AUD', 'USD', 'GBP', 'JPY'];
 
   onSubmit() { this.submitted = true; }
+ 
+  today: number = Date.now();
+
+  ngAfterViewInit() {
+    this.htmlData.nativeElement.focus();
+  }
 
   updateImageHolder(uri: string){
     let imageLink = this.sanatizeString(uri);
@@ -50,6 +60,38 @@ export class AddFormComponent {
     }
 
     return cost;
+  }
+  openPDF() {
+    let DATA: any = document.getElementById('prodRes');
+    console.log(this.htmlData.nativeElement);
+    let PDF = new jsPDF('p', 'mm', 'a4');
+    PDF.html(this.htmlData.nativeElement, {
+      callback(doc) {
+        doc.output('pdfobjectnewwindow');
+      },
+      margin: [10, 10, 10, 10],
+      autoPaging: 'text',
+      x: 0,
+      y: 0,
+      width: 190,
+      windowWidth: 675 
+    });
+    autoTable(PDF, {html: '#prodRes'});
+    //PDF.output('pdfobjectnewwindow');
+  }
+
+  savePDF() {
+    let DATA: any = document.getElementById('prodRes');
+    let PDF = new jsPDF('p', 'mm', 'a4');
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 208;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+     
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight);
+      PDF.save('angular-demo.pdf');
+    });
   }
 
   selectFile(event: any): void {
@@ -76,4 +118,5 @@ export class AddFormComponent {
       }
     }
   }
+  
 }

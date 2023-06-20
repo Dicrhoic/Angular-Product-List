@@ -13,7 +13,6 @@ import { Product } from 'src/classes/product';
 export class ProductDetailComponent {
 
   product : Product | undefined;
-
   currency = ['AUD', 'USD', 'GBP', 'YEN'];
   
   adjustPrice(cost: string): string {

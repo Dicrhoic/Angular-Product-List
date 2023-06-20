@@ -22,13 +22,13 @@
                     A link is required
                 </div>
                 <label for="link">Product Image Link: </label>
-                <input type="text" class="form-control" id="link" required [(ngModel)]="model.image" name="link"
+                <input type="text" class="form-control" id="image" required [(ngModel)]="model.image" name="image"
                     #image="ngModel" placeholder="Enter Product Image Link" (change)="updateImageHolder(image.value)">
                 <div [hidden]="image.valid || image.pristine" class="alert alert-danger">
                     An image link is required
                 </div>
                 <div *ngIf="imageUri != ''">
-                    <img  src="{{imageUri}}" />
+                    <img src="{{imageUri}}" />
                 </div>
                 <div class="form-group">
                     <label for="currency">Currency: </label>
@@ -52,33 +52,32 @@
     </div>
     <div [hidden]="!submitted">
         <h2>You are about to add the following product:</h2>
-        <div class="row">
-            <div class="col-xs-3">Name</div>
-            <div class="col-xs-9">{{ model.name }}</div>
+        <div  #prodRes>
+            <div class="right">
+                    <h2>Product Invoice</h2>
+                    <h4>Created: {{today | date: 'dd LLLL YYYY'}}</h4>
+            </div>
+            <br><br>
+            <table id="prodTable">
+                <tr>
+                    <th>Name</th>
+                    <th>Vendor</th>
+                    <th>Link</th>
+                    <th *ngIf="model.description != null">Description</th>
+                  </tr>
+                  <tr>
+                    <td>{{ model.name }}</td>
+                    <td>{{ model.vendor }}</td>
+                    <td>{{ model.link }}</td>
+                    <td  *ngIf="model.description != null">{{ model.description }}</td>
+                  </tr>
+            </table>
+            <br>
+            <footer>
+                &#169; Kevin Vo Le
+            </footer>
         </div>
-        <div class="row">
-            <div class="col-xs-3">Vendor</div>
-            <div class="col-xs-9">{{ model.vendor }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Link</div>
-            <div class="col-xs-9">{{ model.link }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Price</div>
-            <div class="col-xs-9">{{ model.price | currency: model.currency:'symbol' }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Description</div>
-            <div class="col-xs-9">{{ model.description === 'null' ? 'No Description set' : model.description}}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Image</div>
-            <img src="{{model.image}}" />
-        </div>
-        <br>
-        <button type="button" class="btn btn-primary"
-          >Save as PDF</button>
+        <button type="button" class="btn btn-primary" (click)="openPDF()">Save as PDF</button>
         <button type="button" class="btn btn-primary" (click)="submitted=false">Edit</button>
     </div>
 </div>

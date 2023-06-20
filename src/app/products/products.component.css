@@ -1,0 +1,100 @@
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px
+}
+
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9 {
+    float: left
+}
+
+.col-xs-9 {
+    float: left
+}
+
+.col-xs-3 {
+    width: 25%
+}
+
+.col-xs-9 {
+    width: 75%
+}
+
+.header-name {
+    width: 60%;
+}
+
+.header-brand {
+    width: 20%;
+}
+
+.header-type {
+    width: 20%;
+}
+
+#myTable {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+#myTable th,
+#myTable td {
+    text-align: left;
+    padding: 12px;
+}
+
+#myTable tr {
+
+    border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header,
+#myTable tr:hover {
+
+    background-color: #f1f1f1;
+}
+
+.parts button.selected {
+    background-color: #2f86a8;
+}
+#myTable th.selected {
+    background-color: #233034;
+}
+#myTable th.selected ~ th{
+    background-color: #233034;
+    color: #f1f1f1;
+}
+#myTable th.selected span{
+    color: #f1f1f1;
+}
+
+#myTable .header-small {
+    width: 5%;
+}
+
+.cost-header {
+    text-align: right;
+}
+
+#mainCap {
+    width: 100%;  
+}
