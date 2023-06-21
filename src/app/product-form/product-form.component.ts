@@ -75,7 +75,7 @@ export class ProductFormComponent {
   }
 
   currency = ['AUD', 'USD', 'GBP', 'JPY'];
-  model =  new Product(0, '', 0, this.currency[0], '', '');
+  model =  new Product(0, '', 0, '', '', '');
 
   submitted = false;
   onSubmit() { this.submitted = true; }

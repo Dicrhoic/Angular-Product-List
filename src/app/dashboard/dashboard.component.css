@@ -52,3 +52,7 @@ h2 {
   a:hover {
     background-color: black;
   }
+
+  .body {
+    padding: 25px 50px 75px 100px;
+  }

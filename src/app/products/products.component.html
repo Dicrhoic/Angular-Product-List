@@ -3,9 +3,8 @@
   <table id="myTable" matSort (matSortChange)="sortData($event)">
     <tr class="header">
       <th mat-sort-header="name" class="header-name" style="width:50%;">Name</th>
-      <th mat-sort-header="type" class="header-type" style="width:20%;">Price</th>
-      <th mat-sort-header="brand" class="header-brand" style="width:20%;">Vendor</th>
-      
+      <th mat-sort-header="price" class="header-type" style="width:20%;">Price</th>
+      <th mat-sort-header="vendor" class="header-brand" style="width:20%;">Vendor</th>
     </tr>
     <tr *ngFor="let prod of products">
       <th class="header-name" [class.selected]="prod === selectedProduct" (click)="onSelect(prod)">
@@ -13,20 +12,24 @@
       </th>
       <th class="header-brand">{{prod.price | currency: prod.currency}}</th>
       <th class="header-brand">{{prod.vendor}} <br>
-      <a>{{prod.link}}</a></th>
+        <a>{{prod.link}}</a>
+      </th>
       <th class="header-brand" *ngIf="prod.description != null">{{prod.description}}</th>
     </tr>
+  </table>
+  <table id="totalPrice">
     <tr>
       <th>{{calculateCosts()}} {{costString()}}</th>
-      <tr *ngFor="let c of totalCosts">
-        <th> </th>
-        <th> </th>
-        <th class="cost-header">{{c.total | currency: c.name}}</th>
+    </tr>
+    <tr class="cost-header" *ngFor="let c of totalCosts">
+      <th></th>
+      <th class="cost-header">{{c.total | currency: c.name}}</th>
     </tr>
   </table>
 </div>
 <div class="container">
-  <button type="button" class="btn btn-primary" (click)="openPDF()">Save as PDF</button>
+  <button type="button" class="btn btn-primary" (click)="openPDF()">Save as PDF</button> &#160;
+  <button type="button" class="btn btn-seconday" (click)="clearSelection()">Clear selection</button>
 </div>
 
 

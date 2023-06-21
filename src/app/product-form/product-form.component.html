@@ -26,8 +26,8 @@
             </div>
             <div class="form-group">
                 <label for="currency">Currency: </label>
-                <select class="form-control" id="currency" required>
-                    <option *ngFor="let curr of currency" [value]="curr">{{curr}}</option>
+                <select class="form-control" id="currency"  [(ngModel)]="model.currency" required name="currency" >
+                    <option *ngFor="let curr of currency" [ngValue]="curr" >{{curr}}</option>
                 </select>
                 <input type="text" class="form-control" id="price" required [(ngModel)]="model.price" name="price"
                     (change)="adjustPrice(price.value)" type="number" #price="ngModel">

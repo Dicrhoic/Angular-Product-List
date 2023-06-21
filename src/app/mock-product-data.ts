@@ -7,6 +7,6 @@ export const PRODUCTS: Product[] = [
      link: 'https://www.rebelsport.com.au/p/celsius-bc2-fid-bench-573097.html?cgid=REB070901'},
     {id: 14, name: 'Celsius 50kg Weight Set', price: 229.99, currency: 'AUD', vendor: 'Rebel Sport',
      link: 'https://www.rebelsport.com.au/p/celsius-50kg-weight-set-406383.html?cgid=REB071805#start=2'},
-    {id: 15, name: 'Final Fantasy XVI', price: 9900, currency: 'YEN', vendor: 'Square Enix e-store',
+    {id: 15, name: 'Final Fantasy XVI', price: 9900, currency: 'JPY', vendor: 'Square Enix e-store',
      link: 'https://store.jp.square-enix.com/item/ELJM_30240.html'},
 ];

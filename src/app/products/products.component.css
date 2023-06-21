@@ -48,12 +48,13 @@
 
 #myTable {
     border-collapse: collapse;
-    width: 100%;
+    width: auto;
     border: 1px solid #ddd;
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     table-layout: auto;
+
 }
 
 #myTable th,
@@ -93,8 +94,24 @@
 
 .cost-header {
     text-align: right;
+    color: #000000;
+    width: auto;
 }
 
 #mainCap {
     width: 100%;  
+}
+
+#totalPrice {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #767676;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+
+#totalPrice th {
+    padding-left: 15px;
+    padding-right: 15px;
 }
