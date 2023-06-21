@@ -32,7 +32,7 @@ export class ProductsComponent {
 
   calculateCosts() {
     const currencies = Array.from(new Set(this.products.map((p) => p.currency)));
-    console.log(currencies.length);
+    //console.log(currencies.length);
     const intialCosts: CurrModel[] = [];
     for (const c of currencies)
     {
@@ -43,7 +43,7 @@ export class ProductsComponent {
         name: c,
         total: sum
       };
-      console.log(m);
+      //console.log(m);
       intialCosts.push(m);
     }
     this.totalCosts = intialCosts.filter((value, index, self) =>
@@ -51,7 +51,7 @@ export class ProductsComponent {
         t.name === value.name
       )
     );
-    console.log(this.totalCosts);
+    //console.log(this.totalCosts);
   }
 
   costString(){
@@ -66,9 +66,17 @@ export class ProductsComponent {
     }
   }
 
+  clearSelection()
+  { 
+    console.log("Clearing Selection");
+    console.log(this.selectedProduct);
+    this.selectedProduct = undefined;
+    console.log(this.selectedProduct);
+  }
+
   openPDF() {
     let DATA: any = document.getElementById('prodRes');
-    console.log(this.htmlData.nativeElement);
+    //console.log(this.htmlData.nativeElement);
     let PDF = new jsPDF('p', 'mm', 'a4');
     PDF.html(this.htmlData.nativeElement, {
       callback(doc) {
@@ -115,10 +123,10 @@ export class ProductsComponent {
       switch (sort.active) {
         case "name":
           return this.compare(a.name, b.name, isAsc);
-        case "type":
-          return this.compare(a.name, b.name, isAsc);
-        case "brand":
-          return this.compare(a.name, b.name, isAsc);
+        case "price":
+          return this.compare(a.price, b.price, isAsc);
+        case "vendor":
+          return this.compare(a.vendor, b.vendor, isAsc);
         default:
           return 0;
       }
@@ -127,6 +135,7 @@ export class ProductsComponent {
 
 
   compare(a: number | string, b: number | string, isAsc: boolean) {
+    console.log("Comparing: " + a + " " + b + " res: " + (a < b));
     return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
   }
 
