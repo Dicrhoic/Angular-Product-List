@@ -1,55 +1,61 @@
-<div class="container" #prodList id="mainCap">
-  <h2>My Products</h2>
-  <table id="myTable" matSort (matSortChange)="sortData($event)">
-    <tr class="header">
-      <th mat-sort-header="name" class="header-name" style="width:50%;">Name</th>
-      <th mat-sort-header="price" class="header-type" style="width:20%;">Price</th>
-      <th mat-sort-header="vendor" class="header-brand" style="width:20%;">Vendor</th>
-    </tr>
-    <tr *ngFor="let prod of products">
-      <th class="header-name" [class.selected]="prod === selectedProduct" (click)="onSelect(prod)">
-        <span class="name"><a href="/detail/{{prod.id}}">{{prod.name}}</a></span>
-      </th>
-      <th class="header-brand">{{prod.price | currency: prod.currency}}</th>
-      <th class="header-brand">{{prod.vendor}} <br>
-        <a>{{prod.link}}</a>
-      </th>
-      <th class="header-brand" *ngIf="prod.description != null">{{prod.description}}</th>
-    </tr>
-  </table>
-  <table id="totalPrice">
-    <tr>
-      <th>{{calculateCosts()}} {{costString()}}</th>
-    </tr>
-    <tr class="cost-header" *ngFor="let c of totalCosts">
-      <th></th>
-      <th class="cost-header">{{c.total | currency: c.name}}</th>
-    </tr>
-  </table>
-</div>
-<div class="container">
-  <button type="button" class="btn btn-primary" (click)="openPDF()">Save as PDF</button> &#160;
-  <button type="button" class="btn btn-seconday" (click)="clearSelection()">Clear selection</button>
-</div>
-
-
-<div class="container" *ngIf="selectedProduct != undefined">
-  <h2>{{selectedProduct.name}} Details:</h2>
-  <app-product-info [product]="selectedProduct"></app-product-info>
-  <div>
-    <label for="new-product">Product name: </label>
-    <input id="new-product" #productName>
-    <button type="button" class="add-button" (click)="add(productName.value); productName.value=''">
-      Add Product
-    </button>
+<div class="main">
+  <div class="container" #prodList id="mainCap">
+    <h2>My Products</h2>
+    <table id="myTable" matSort (matSortChange)="sortData($event)">
+      <tr class="header">
+        <th mat-sort-header="name" class="header-name" style="width:50%;">Name</th>
+        <th mat-sort-header="price" class="header-type" style="width:20%;">Price</th>
+        <th mat-sort-header="vendor" class="header-brand" style="width:20%;">Vendor</th>
+      </tr>
+      <tr *ngFor="let prod of products">
+        <th class="header-name" [class.selected]="prod === selectedProduct" (click)="onSelect(prod)">
+          <span class="name"><a href="/detail/{{prod.id}}">{{prod.name}}</a></span>
+          <br>
+          <span *ngIf="prod.description != null">
+            <h4>Description:</h4>
+            <br>{{prod.description}}>
+          </span>
+        </th>
+        <th class="header-brand">{{prod.price | currency: prod.currency}}</th>
+        <th class="header-brand">{{prod.vendor}} <br>
+          <a>{{prod.link}}</a>
+        </th>
+      </tr>
+    </table>
+    <table id="totalPrice">
+      <tr>
+        <th>{{calculateCosts()}} {{costString()}}</th>
+      </tr>
+      <tr class="cost-header" *ngFor="let c of totalCosts">
+        <th></th>
+        <th class="cost-header">{{c.total | currency: c.name}}</th>
+      </tr>
+    </table>
+  </div>
+  <div class="container">
+    <button type="button" class="btn btn-primary" (click)="openPDF()">Save as PDF</button> &#160;
+    <button type="button" class="btn btn-seconday" (click)="clearSelection()">Clear selection</button>
   </div>
 
-  <ul class="products">
-    <li *ngFor="let prod of products">
-      <a routerLink="/detail/{{prod.id}}">
-        <span class="badge">{{prod.id}}</span> {{prod.name}}
-      </a>
-      <button type="button" class="delete" title="delete product" (click)="delete(prod)">x</button>
-    </li>
-  </ul>
+  <div class="container" *ngIf="selectedProduct != undefined" #detailSec >
+    <h2>{{selectedProduct.name}} Details:</h2>
+    <app-product-info [product]="selectedProduct"></app-product-info>
+    <br><br>
+    <div>
+      <label for="new-product">Product name: </label>
+      <input id="new-product" #productName>
+      <button type="button" class="add-button" (click)="add(productName.value); productName.value=''">
+        Add Product
+      </button>
+    </div>
+
+    <ul class="products">
+      <li *ngFor="let prod of products">
+        <a routerLink="/detail/{{prod.id}}">
+          <span class="badge">{{prod.id}}</span> {{prod.name}}
+        </a>
+        <button type="button" class="delete" title="delete product" (click)="delete(prod)">x</button>
+      </li>
+    </ul>
+  </div>
 </div>

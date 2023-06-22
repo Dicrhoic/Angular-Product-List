@@ -42,7 +42,6 @@ export class ProductDetailComponent {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.productService.getProductI(id)
       .subscribe(product => this.product = product);
-    
   }
 
   goBack(): void {
