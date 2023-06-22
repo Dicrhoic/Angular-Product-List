@@ -15,11 +15,11 @@ export class DashboardComponent {
     this.products = this.productService.getTProducts();
   }
   ngOnInit(): void {
-    this.getProducts();
+    this.getTProducts();
   }
 
   getTProducts(): void {
-    this.productService.getTestProducts()
+    this.productService.getProducts()
       .subscribe(product => this.products = product);
   }
 

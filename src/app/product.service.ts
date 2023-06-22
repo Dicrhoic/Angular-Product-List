@@ -28,6 +28,13 @@ export class ProductService {
     this.messageService.add(`ProductService: ${message}`);
   }
 
+  getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.productUrl)
+      .pipe(
+        catchError(this.handleError<Product[]>('getProducts', []))
+      );
+  }
+
   getProductI(id: number): Observable<Product> {
     const url = `${this.productUrl}/${id}`;
     return this.http.get<Product>(url).pipe(
@@ -67,6 +74,7 @@ export class ProductService {
   }
 
   updateProduct(product: Product): Observable<any> {
+    console.log("Updating product price: " + product.price);
     return this.http.put(this.productUrl, product, this.httpOptions).pipe(
       tap(_ => this.log(`updated Product id=${product.id}`)),
       catchError(this.handleError<any>('updateProduct'))

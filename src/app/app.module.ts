@@ -23,6 +23,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTableModule} from '@angular/material/table';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -52,9 +53,14 @@ import {MatTableModule} from '@angular/material/table';
     MatSortModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatTableModule
+    MatTableModule,
+    MatSidenavModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'en-AU' }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+
+
+ }

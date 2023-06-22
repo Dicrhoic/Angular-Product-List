@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SideTabs } from './side-nav-data';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Product-List';
+  tabs = SideTabs;
 }

@@ -2,10 +2,20 @@
     <h1>Kevin's Angular Showcase</h1>
     <nav>
         <a routerLink="/home">Home</a>
-        <a routerLink="/dashboard">Product List</a>
+        <a routerLink="/dashboard">Product Search</a>
         <a routerLink="/AddProduct">Add Product Debugger</a>
         <a routerLink="/AddSingleProduct">Add Product and Save as PDF</a>
+        <ul class="navbar-right" (click)="drawer.toggle()"><a>&#9776; </a></ul>
     </nav>
-    <router-outlet></router-outlet>
-    <app-messages></app-messages>
+    <mat-sidenav-container [hasBackdrop]="true">
+        <mat-sidenav #drawer mode="side" fixedTopGap="56" position="end">
+            <h4>Other Works</h4>
+            <div *ngFor="let tab of tabs">
+                <a href="{{tab.tabLink}}">{{tab.tabName}}</a>
+            </div>
+        </mat-sidenav>
+        <router-outlet></router-outlet>
+        <app-messages></app-messages>
+    </mat-sidenav-container>
+
 </div>

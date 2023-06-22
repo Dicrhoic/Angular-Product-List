@@ -18,6 +18,7 @@ export class ProductsComponent {
   constructor(private productService: ProductService) {}
   selectedProduct?: Product;
 
+
   onSelect(prod: Product){
     this.selectedProduct = prod;
     console.log(this.selectedProduct);
@@ -25,6 +26,8 @@ export class ProductsComponent {
   dataSource = this.products;
   displayedColumns: string[] = ['Name', 'Price', 'Vendor'];
   ngOnInit(): void {
+
+    console.log("Getting p");
     this.getProducts();
   }
 
@@ -72,7 +75,9 @@ export class ProductsComponent {
     console.log(this.selectedProduct);
     this.selectedProduct = undefined;
     console.log(this.selectedProduct);
-  }
+  } 
+
+  
 
   openPDF() {
     let DATA: any = document.getElementById('prodRes');
@@ -95,7 +100,7 @@ export class ProductsComponent {
 
 
   getProducts(): void {
-    this.productService.getTestProducts().subscribe(products => this.products = products);
+    this.productService.getProducts().subscribe(products => this.products = products);
   }
 
   add(name: string): void {
