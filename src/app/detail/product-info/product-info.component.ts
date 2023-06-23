@@ -27,6 +27,7 @@ export class ProductInfoComponent {
     if (this.product) {
       this.productService.updateProduct(this.product)
         .subscribe();
+      this.unlockInputs();
     }
   }
 
